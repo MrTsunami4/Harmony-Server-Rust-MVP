@@ -4,13 +4,13 @@ use axum::{
     Router,
 };
 
-use mongodb::{bson::doc, Client};
+//use mongodb::{bson::doc, Client};
 
 use serde::{Deserialize, Serialize};
 
 #[tokio::main]
 async fn main() {
-    create_database().await;
+    //create_database().await;
 
     let app = Router::new()
         .route("/", get(get_slash).post(post_name))
@@ -59,9 +59,9 @@ struct User {
     level: u32,
 }
 
-async fn create_database() {
+/*async fn create_database() {
     let client = Client::with_uri_str("mongodb+srv://mrtsunami:<Excalibur4>@cluster0.unqff.mongodb.net/myFirstDatabase?retryWrites=true&w=majority").await.unwrap();
     for database_name in client.list_database_names(None, None).await.unwrap() {
         println!("{}", database_name);
     }
-}
+}*/
