@@ -1,12 +1,12 @@
 [package]
 name = "harmony_server_rust_mvp"
 version = "0.1.0"
-edition = "2018"
+edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 axum = "0.2.8"
+sled = "0.34.7"
 tokio = { version = "1", features = ["full"] }
-mongodb = "2.0.1"
 serde = { version = "1.0", features = ["derive"] }
