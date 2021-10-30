@@ -3,15 +3,16 @@ use axum::{
     handler::get,
     Router,
 };
-
-use sled::Config;
-
+use lazy_static::lazy_static;
 use serde::{Deserialize, Serialize};
+use sled::Db;
+
+lazy_static! {
+    static ref TREE: Db = sled::open("/tmp/sled_harmony").expect("Can't open database ");
+}
 
 #[tokio::main]
 async fn main() {
-    let config = Config::new();
-
     let app = Router::new()
         .route("/", get(get_slash).post(post_name))
         .route("/cat", get(get_cat))
@@ -34,6 +35,7 @@ async fn get_cat() -> String {
 }
 
 async fn post_name(Json(payload): Json<User>) -> String {
+    //TREE.insert(payload.username, payload.level);
     format!(
         "Son nom est {} et son niveau est {}",
         payload.username, payload.level
